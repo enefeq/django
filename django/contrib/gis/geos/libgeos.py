@@ -190,7 +190,8 @@ def geos_version_info():
     is a release candidate (and what number release candidate), and the C API
     version.
     """
-    ver = geos_version().decode()
+    # Real versions sometimes have trailing whitespace, strip this
+    ver = geos_version().decode().strip()
     m = version_regex.match(ver)
     if not m:
         raise GEOSException('Could not parse version info string "%s"' % ver)
